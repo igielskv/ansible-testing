@@ -13,3 +13,12 @@
     state: present
     key: "{{ item }}"
   loop: "{{ user_ansible['keys'] }}"
+
+- name: Configure passwordless sudo for user ansible
+  ansible.builtin.copy:
+    src: ansible-nopasswd
+    dest: /etc/sudoers.d/
+    owner: root
+    group: root
+    mode: '0440'
+    validate: /usr/sbin/visudo -csf %s
