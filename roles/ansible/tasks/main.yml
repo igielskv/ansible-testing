@@ -1,0 +1,15 @@
+---
+# tasks file for ansible
+- name: Create user ansible
+  ansible.builtin.user:
+    name: ansible
+    groups: sudo,ssh
+    home: "{{ user_ansible['home'] }}"
+    system: true
+
+- name: Adds an SSH authorized key for user ansible
+  ansible.posix.authorized_key:
+    user: ansible
+    state: present
+    key: "{{ item }}"
+  loop: "{{ user_ansible['keys'] }}"

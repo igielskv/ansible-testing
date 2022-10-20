@@ -1,0 +1,5 @@
+---
+user_ansible:
+  home: /var/lib/ansible
+  keys:
+    - "{{ lookup('file', 'public_keys/ansible.pub') }}"

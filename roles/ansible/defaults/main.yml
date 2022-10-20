@@ -1,0 +1,6 @@
+---
+# defaults file for ansible
+user_ansible:
+  home: /var/lib/ansible
+  keys: []
+  

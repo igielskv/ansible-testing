@@ -1,0 +1,11 @@
+---
+- name: Main ansible playbook
+  hosts: all
+  become: true
+  roles:
+    - ansible
+    
+  # tasks:
+  #   - name: Debug
+  #     debug:
+  #       var: ansible_user
