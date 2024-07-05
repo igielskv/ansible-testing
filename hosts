@@ -3,3 +3,24 @@ local:
   hosts:
     localhost:
       ansible_connection: local
+
+debian:
+  hosts:
+    ansible-testing-1:
+      ansible_host: 10.184.1.230
+  vars:
+    ansible_user: debian
+
+rocky:
+  hosts:
+    ansible-testing-2:
+      ansible_host: 10.184.1.236
+  vars:
+    ansible_user: rocky
+
+centos:
+  hosts:
+    ansible-testing-3:
+      ansible_host: 10.184.1.237
+  vars:
+    ansible_user: cloud-user
