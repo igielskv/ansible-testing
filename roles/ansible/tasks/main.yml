@@ -1,2 +1,21 @@
 ---
 # tasks file for roles/ansible
+
+- name: Install required packages
+  ansible.builtin.apt:
+    name:
+      - sudo
+      - openssh-server
+      - python3-apt
+    state: present
+  tags:
+    - sudo
+    - ssh
+
+
+- block:
+    - name: Group ansible
+      ansible.builtin.group:
+        name: ansible
+        system: true
+        state: present
