@@ -1,0 +1,9 @@
+---
+- name: Common setup for Debian
+  hosts: debian
+  become: true
+  roles:
+    - role: ansible
+      tags:
+        - ansible
+        - bootstrap
