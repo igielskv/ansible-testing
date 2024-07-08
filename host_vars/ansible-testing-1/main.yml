@@ -1,4 +1,4 @@
 ---
-ansible_common:
+ansible_common_ansible_testing_1:
   test_key:
     - "test_value"

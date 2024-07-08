@@ -25,3 +25,5 @@
     - name: Debug merge
       ansible.builtin.debug:
         var: ansible_common
+      vars:
+        ansible_common: "{{ lookup('community.general.merge_variables', 'ansible_common_', pattern_type='prefix') }}"
