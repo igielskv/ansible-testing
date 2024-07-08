@@ -1,0 +1,4 @@
+---
+ansible_common:
+  test_key:
+    - "test_value"

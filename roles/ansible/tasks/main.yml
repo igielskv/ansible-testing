@@ -13,19 +13,15 @@
     - ssh
 
 
-- block:
+- name: Ansible user tasks
+  tags: user
+  block:
     - name: Group ansible
       ansible.builtin.group:
         name: ansible
         system: true
         state: present
 
-    - name: User ansible
-      ansible.builtin.user:
-        name: ansible
-        group: ansible
-        groups: sudo
-        home: "{{ ansible_common.home }}"
-        shell: /bin/sh
-        system: true
-        state: present
+    - name: Debug merge
+      ansible.builtin.debug:
+        var: ansible_common
