@@ -1,4 +1,4 @@
 ---
 # vars file for roles/ansible
 
-ansible_common: "{{ lookup('ansible.builtin.vars', *query('ansible.builtin.varnames', '^ansible_common_')) | ansible.builtin.combine(recursive=true) }}"
+ansible_common: "{{ lookup('ansible.builtin.vars', *query('ansible.builtin.varnames', '^ansible_common_')) | ansible.builtin.combine(list_merge='append_rp', recursive=true) }}"

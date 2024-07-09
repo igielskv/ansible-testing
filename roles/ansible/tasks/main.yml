@@ -22,6 +22,36 @@
         system: true
         state: present
 
-    - name: Debug merge
-      ansible.builtin.debug:
-        var: ansible_common
+    - name: Make sure ssh group is present
+      ansible.builtin.group:
+        name: ssh
+        system: true
+        state: present
+
+    - name: User ansible
+      ansible.builtin.user:
+        name: ansible
+        group: ansible
+        groups: ssh,sudo
+        home: "{{ ansible_common.home }}"
+        shell: /bin/sh
+        system: true
+        state: present
+
+    - name: Add ssh keys for Ansible user
+      ansible.posix.authorized_key:
+        user: ansible
+        key: "{{ item }}"
+        state: present
+      loop: "{{ ansible_common.ssh_keys }}"
+
+    - name: Remove old ssh keys
+      ansible.posix.authorized_key:
+        user: ansible
+        key: "{{ item }}"
+        state: absent
+      loop: "{{ ansible_common.ssh_keys_removed }}"
+
+#    - name: Debug merge
+#      ansible.builtin.debug:
+#        var: ansible_common
