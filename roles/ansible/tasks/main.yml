@@ -53,10 +53,6 @@
       loop: "{{ ansible_common.ssh_keys_removed }}"
 
 
-- name: Debug merge
-  ansible.builtin.debug:
-    var: ansible_common
-
 - name: Prepare directories
   ansible.builtin.file:
     path: "{{ item.path }}"
@@ -73,3 +69,34 @@
     - path: /opt/scripts
       owner: root
       group: root
+
+
+- name: Ansible sudo configuration tasks
+  tags: sudo
+  block:
+    - name: Configure sudo for ansible
+      ansible.builtin.template:
+        src: sudoers.j2
+        dest: /etc/sudoers.d/ansible
+        owner: root
+        group: root
+        mode: '0440'
+        validate: /usr/sbin/visudo -cf %s
+
+    - name: Disable old-style ansible sudo config
+      ansible.builtin.lineinfile:
+        path: /etc/sudoers
+        state: absent
+        regexp: '^[\s]*ansible\b'
+        validate: /usr/sbin/visudo -cf %s
+
+    - name: Allow useful environment variables for sudo
+      ansible.builtin.blockinfile:
+        path: /etc/sudoers
+        state: present
+        marker: "# {mark} Ansible managed env variables"
+        prepend_newline: true
+        block: |
+          Defaults env_keep += "SSH_*"
+          Defaults env_keep += "EDITOR"
+        validate: /usr/sbin/visudo -cf %s
