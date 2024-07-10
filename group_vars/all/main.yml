@@ -1,5 +1,5 @@
 ---
 ansible_common_all:
   ssh_keys:
-    - "{{ lookup('file', 'users/personal_ed25519.pub') }}"
-    - "{{ lookup('file', 'users/lw_ed25519.pub') }}"
+    - "{{ lookup('file', 'keys/personal_ed25519.pub') }}"
+    - "{{ lookup('file', 'keys/lw_ed25519.pub') }}"
