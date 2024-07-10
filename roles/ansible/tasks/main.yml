@@ -52,6 +52,24 @@
         state: absent
       loop: "{{ ansible_common.ssh_keys_removed }}"
 
-#    - name: Debug merge
-#      ansible.builtin.debug:
-#        var: ansible_common
+
+- name: Debug merge
+  ansible.builtin.debug:
+    var: ansible_common
+
+- name: Prepare directories
+  ansible.builtin.file:
+    path: "{{ item.path }}"
+    state: directory
+    owner: "{{ item.owner | default('ansible') }}"
+    group: "{{ item.group | default('ansible') }}"
+    mode: "{{ item.mode | default('0755') }}"
+  loop:
+    - path: "{{ ansible_common.home }}"
+      mode: '0750'
+
+    - path: "{{ ansible_common.home }}/creates"
+
+    - path: /opt/scripts
+      owner: root
+      group: root
