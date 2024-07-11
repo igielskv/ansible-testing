@@ -87,7 +87,7 @@
       ansible.builtin.lineinfile:
         path: /etc/sudoers
         state: absent
-        regexp: '^[\s]*ansible\b'
+        regexp: '^\s*ansible\b'
         validate: /usr/sbin/visudo -cf %s
 
     - name: Allow useful environment variables for sudo
@@ -100,3 +100,25 @@
           Defaults env_keep += "SSH_*"
           Defaults env_keep += "EDITOR"
         validate: /usr/sbin/visudo -cf %s
+
+
+# NOTE: Whitespace in regexp is intended to allow sections configuration (Match...)
+- name: Configure sshd
+  ansible.builtin.lineinfile:
+    path: /etc/ssh/sshd_config
+    state: "{{ item.state | default('present') }}"
+    regexp: '^\s*{{ item.name }}\b'
+    insertbefore: '^# BEGIN'
+    firstmatch: true
+    line: "{{ item.name + ' ' + item.value if item.value is defined else omit }}"
+  notify: Restart sshd
+  loop:
+    - name: 'AllowUsers'
+      state: absent
+    - name: 'AllowGroups'
+      value: 'ssh'
+    - name: 'PermitRootLogin'
+      value: 'no'
+    - name: 'MaxStartups'
+      value: "{{ ansible_common.ssh_max_startups }}"
+  tags: ssh

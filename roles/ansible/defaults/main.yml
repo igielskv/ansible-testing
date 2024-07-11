@@ -2,6 +2,6 @@
 # defaults file for roles/ansible
 
 ansible_common_default:
-  home: /var/lib/ansible
+  home: '/var/lib/ansible'
   ssh_keys_removed: []
-  ssh_max_startups: 10:30:100
+  ssh_max_startups: '10:30:100'

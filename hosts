@@ -8,8 +8,6 @@ debian:
   hosts:
     ansible-testing-1:
       ansible_host: 10.184.1.230
-  vars:
-    ansible_user: debian
 
 rocky:
   hosts:
@@ -24,3 +22,7 @@ centos:
       ansible_host: 10.184.1.237
   vars:
     ansible_user: cloud-user
+
+all:
+  vars:
+    ansible_user: ansible
