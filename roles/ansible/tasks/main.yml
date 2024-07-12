@@ -111,7 +111,7 @@
     insertbefore: '^# BEGIN'
     firstmatch: true
     line: "{{ item.name + ' ' + item.value if item.value is defined else omit }}"
-  notify: Restart sshd
+  notify: restart sshd
   loop:
     - name: 'AllowUsers'
       state: absent
