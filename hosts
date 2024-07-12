@@ -10,6 +10,8 @@ debian:
       ansible_host: 10.184.1.230
     debian-bookworm:
       ansible_host: 10.184.1.240
+    debian-buster:
+      ansible_host: 10.184.1.242
 
 rocky:
   hosts:
@@ -24,6 +26,11 @@ centos:
       ansible_host: 10.184.1.237
   vars:
     ansible_user: cloud-user
+
+testing:
+  hosts:
+    debian-buster:
+    debian-bookworm:
 
 all:
   vars:

@@ -1,0 +1,16 @@
+---
+# vars file for Debian bookworm
+
+common_packages:
+  repositories:
+    - "deb {{ common_deb_mirror_url }} {{ ansible_facts['distribution_release'] }} main contrib"
+    - "deb-src {{ common_deb_mirror_url }} {{ ansible_facts['distribution_release'] }} main contrib"
+
+    - "deb {{ common_deb_mirror_url }} {{ ansible_facts['distribution_release'] }}-updates main contrib"
+    - "deb-src {{ common_deb_mirror_url }} {{ ansible_facts['distribution_release'] }}-updates main contrib"
+
+    - "deb {{ common_deb_mirror_url }} {{ ansible_facts['distribution_release'] }}-backports main contrib"
+    - "deb-src {{ common_deb_mirror_url }} {{ ansible_facts['distribution_release'] }}-backports main contrib"
+
+    - "deb {{ common_security_mirror_url }} {{ ansible_facts['distribution_release'] }}-security main contrib"
+    - "deb-src {{ common_security_mirror_url }} {{ ansible_facts['distribution_release'] }}-security main contrib"
