@@ -1,0 +1,31 @@
+---
+# tasks file for roles/common
+
+- name: Debug Display
+  ansible.builtin.debug:
+    var: common_packages
+
+# - name: Stop execution here
+#   ansible.builtin.fail:
+
+
+- name: apt configuration tasks
+  when: "'raspberry' not in group_names"
+  tags:
+    - apt
+    - sources-list
+  block:
+    - name: Remove default sources
+      ansible.builtin.file:
+        path: /etc/apt/sources.list
+        state: absent
+
+    - name: Use initial repositories
+      ansible.builtin.apt_repository:
+        repo: "{{ item }}"
+        update_cache: no
+      loop: "{{ common_packages.repositories }}"
+
+    - name: apt update
+      ansible.builtin.apt:
+        update_cache: yes
