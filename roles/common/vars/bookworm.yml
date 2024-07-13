@@ -3,14 +3,14 @@
 
 common_packages:
   repositories:
-    - "deb {{ common_deb_mirror_url }} {{ ansible_facts['distribution_release'] }} main contrib"
-    - "deb-src {{ common_deb_mirror_url }} {{ ansible_facts['distribution_release'] }} main contrib"
+    - "deb {{ common_deb_mirror_url }} {{ ansible_facts['distribution_release'] }} main non-free-firmware contrib"
+    - "deb-src {{ common_deb_mirror_url }} {{ ansible_facts['distribution_release'] }} main non-free-firmware contrib"
 
-    - "deb {{ common_deb_mirror_url }} {{ ansible_facts['distribution_release'] }}-updates main contrib"
-    - "deb-src {{ common_deb_mirror_url }} {{ ansible_facts['distribution_release'] }}-updates main contrib"
+    - "deb {{ common_deb_mirror_url }} {{ ansible_facts['distribution_release'] }}-updates main non-free-firmware contrib"
+    - "deb-src {{ common_deb_mirror_url }} {{ ansible_facts['distribution_release'] }}-updates main non-free-firmware contrib"
 
-    - "deb {{ common_deb_mirror_url }} {{ ansible_facts['distribution_release'] }}-backports main contrib"
-    - "deb-src {{ common_deb_mirror_url }} {{ ansible_facts['distribution_release'] }}-backports main contrib"
+    - "deb {{ common_deb_mirror_url }} {{ ansible_facts['distribution_release'] }}-backports main non-free-firmware contrib"
+    - "deb-src {{ common_deb_mirror_url }} {{ ansible_facts['distribution_release'] }}-backports main non-free-firmware contrib"
 
-    - "deb {{ common_security_mirror_url }} {{ ansible_facts['distribution_release'] }}-security main contrib"
-    - "deb-src {{ common_security_mirror_url }} {{ ansible_facts['distribution_release'] }}-security main contrib"
+    - "deb {{ common_security_mirror_url }} {{ ansible_facts['distribution_release'] }}-security main non-free-firmware contrib"
+    - "deb-src {{ common_security_mirror_url }} {{ ansible_facts['distribution_release'] }}-security main non-free-firmware contrib"

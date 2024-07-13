@@ -2,4 +2,5 @@
 # defaults file for roles/common
 
 common_deb_mirror_url: http://deb.debian.org/debian/
+common_archive_mirror_url: http://archive.debian.org/debian/
 common_security_mirror_url: http://security.debian.org/debian-security

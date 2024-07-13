@@ -5,13 +5,6 @@
   ansible.builtin.include_vars:
     file: "{{ ansible_distribution_release }}.yml"
 
-- name: Debug Display
-  ansible.builtin.debug:
-    var: common_packages
-
-# - name: Stop execution here
-#   ansible.builtin.fail:
-
 
 - name: apt configuration tasks
   when: "'raspberry' not in group_names"
@@ -30,6 +23,6 @@
         update_cache: no
       loop: "{{ common_packages.repositories }}"
 
-    # - name: apt update
-    #   ansible.builtin.apt:
-    #     update_cache: yes
+    - name: apt update
+      ansible.builtin.apt:
+        update_cache: yes
