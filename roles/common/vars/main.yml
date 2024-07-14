@@ -1,2 +1,30 @@
 ---
 # vars file for roles/common
+
+common_packages:
+  install:
+    - vim-nox
+    - less
+    - gawk
+    - mc
+    - htop
+    - iotop
+    - iftop
+    - sudo
+    - lsof
+    - parted
+    - iputils-ping
+    - rsync
+    - curl
+    - figlet
+    - tree
+    - apt-transport-https
+    - logrotate
+    - ntpdate
+    - moreutils
+    - openssl
+    - openssh-server
+    - git
+    - bc
+    - ca-certificates
+    - gnupg2

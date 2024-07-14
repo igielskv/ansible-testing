@@ -4,6 +4,7 @@
 - name: Include version-specific variables
   ansible.builtin.include_vars:
     file: "{{ ansible_distribution_release }}.yml"
+    hash_behaviour: merge
 
 
 - name: apt configuration tasks
@@ -26,3 +27,22 @@
     - name: apt update
       ansible.builtin.apt:
         update_cache: yes
+
+
+- name: Install packages
+  ansible.builtin.apt:
+    name: "{{ common_packages.install }}"
+    state: present
+  tags:
+    - apt
+
+- name: Install open-vm-tools
+  ansible.builtin.apt:
+    name: open-vm-tools
+    state: latest
+  when:
+    - ansible_facts['virtualization_type'] == 'VMware'
+    - ansible_facts['virtualization_role'] == 'guest'
+  tags:
+    - apt
+    - vmware
