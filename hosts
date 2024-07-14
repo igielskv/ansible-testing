@@ -8,9 +8,9 @@ debian:
   hosts:
     ansible-testing-1:
       ansible_host: 10.184.1.230
-    debian-bookworm:
+    debian-bookworm.applepark.home:
       ansible_host: 10.184.1.240
-    debian-buster:
+    debian-buster.applepark.home:
       ansible_host: 10.184.1.242
 
 rocky:
@@ -29,8 +29,8 @@ centos:
 
 testing:
   hosts:
-    debian-buster:
-    debian-bookworm:
+    debian-buster.applepark.home:
+    debian-bookworm.applepark.home:
 
 all:
   vars:
