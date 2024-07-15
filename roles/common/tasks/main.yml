@@ -64,3 +64,13 @@
     - name: Set hostname
       ansible.builtin.hostname:
         name: "{{ inventory_hostname_short }}"
+
+
+- name: Turn on IPv6
+  ansible.posix.sysctl:
+    name: net.ipv6.conf.all.disable_ipv6
+    value: '0'
+  when: ansible_facts['virtualization_type'] not in ['lxc']
+  tags:
+    - sysctl
+    - network
