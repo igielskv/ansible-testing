@@ -1,6 +1,11 @@
 ---
 # defaults file for roles/common
 
+# mirrors for deb packages
 common_deb_mirror_url: http://deb.debian.org/debian/
 common_archive_mirror_url: http://archive.debian.org/debian/
 common_security_mirror_url: http://security.debian.org/debian-security
+
+# ntp
+# list of ntp servers – if empty defaults from linux distro remains
+common_ntp_servers: []

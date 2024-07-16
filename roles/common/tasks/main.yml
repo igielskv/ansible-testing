@@ -75,3 +75,22 @@
   tags:
     - sysctl
     - network
+
+- name: Setup ntp time
+  ansible.builtin.import_tasks: time.yml
+  tags:
+    - ntp
+    - time
+
+# - name: Nastaveni grub menu timeout
+#   lineinfile:
+#     dest: '/etc/default/grub'
+#     regexp: 'GRUB_TIMEOUT'
+#     line: 'GRUB_TIMEOUT=1'
+#   notify: Update grub
+#   when:
+#     - ansible_facts['virtualization_type'] not in [ 'lxc' ]
+#     - '"raspberry" not in group_names'
+
+#   tags:
+#     - grub

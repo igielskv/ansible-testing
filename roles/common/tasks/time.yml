@@ -1,0 +1,23 @@
+---
+- name: Set timezone to Europe/Prague
+  community.general.timezone:
+    name: Europe/Prague
+
+- name: Configure timesyncd
+  community.general.ini_file:
+    path: /etc/systemd/timesyncd.conf
+    section: Time
+    option: "{{ item.name }}"
+    value: "{{ item.value }}"
+  register: result_timesyncd
+  loop:
+    - name: NTP
+      value: "{{ common_ntp_servers | join(' ') }}"
+
+- name: Debug timesyncd
+  ansible.builtin.debug:
+    var: result_timesyncd
+
+- name: Enable timesyncd
+  ansible.builtin.command: timedatectl set-ntp true
+  when: result_timesyncd is changed
