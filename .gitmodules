@@ -1,0 +1,3 @@
+[submodule "shared-roles"]
+	path = shared-roles
+	url = git@gitlab.com:VojtechMyslivec/ansible-shared-roles.git
